@@ -20,6 +20,13 @@ jobs:
         registry-url: 'https://npm.pkg.github.com'
         scope: '@staizen'
     - run: npm install
-    - run: node index.js
       env:
         NODE_AUTH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+    - run: node index.js
+    - run: echo "GITHUB_WORKSPACE"
+    - run: echo "$GITHUB_WORKSPACE"
+    - name: Make artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: Artifact
+        path: '*'
